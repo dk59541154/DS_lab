@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+// This function places the pivot in the correct spot
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high]; // Pick the last element as pivot
+    int i = (low - 1);     // Index of the smaller element
+    int temp;
+
+    for (int j = low; j < high; j++) {
+        // If current element is smaller than the pivot, swap it
+        if (arr[j] < pivot) {
+            i++;
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    
+    // Put the pivot in its correct middle position
+    temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+
+    return (i + 1); // Return the middle spot
+}
+
+// The main Quick Sort function that calls itself
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        // Find the pivot point where the array is split
+        int pi = partition(arr, low, high);
+
+        // Sort the left side and right side separately
+        quickSort(arr, low, pi - 1);  // Left side
+        quickSort(arr, pi + 1, high); // Right side
+    }
+}
+
+int main() {
+    int arr[] = {50, 10, 40, 20, 30};
+    int size = 5;
+
+    // Call Quick Sort (array, start index, end index)
+    quickSort(arr, 0, size - 1);
+
+    // Print the sorted array
+    printf("Sorted Array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
