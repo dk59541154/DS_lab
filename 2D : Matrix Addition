@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    // Changing rows and columns to 3
+    int rows = 3, cols = 3; 
+    int A[3][3], B[3][3], sum[3][3];
+
+    // 1. Take input for Matrix A (9 numbers)
+    printf("Enter 9 numbers for Matrix A:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    // 2. Take input for Matrix B (9 numbers)
+    printf("\nEnter 9 numbers for Matrix B:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &B[i][j]);
+        }
+    }
+
+    // 3. Add Matrix A and B together
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            sum[i][j] = A[i][j] + B[i][j];
+        }
+    }
+
+    // 4. Print the final 3x3 result grid
+    printf("\nResult Matrix (A + B):\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", sum[i][j]);
+        }
+        printf("\n"); // Move to next line after printing 3 numbers
+    }
+
+    return 0;
+}
+
