@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main() {
+    int rows = 3, cols = 3;
+    int A[3][3], B[3][3];
+    int product[3][3]; // Grid to store the answers
+
+    // 1. Take input for Matrix A
+    printf("Enter 9 numbers for Matrix A:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    // 2. Take input for Matrix B
+    printf("\nEnter 9 numbers for Matrix B:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &B[i][j]);
+        }
+    }
+
+    // 3. Multiplication Logic (Requires 3 Loops)
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            
+            product[i][j] = 0; // Initialize the spot to 0 before calculating
+            
+            // The 3rd loop (k) moves across row 'i' of A and down column 'j' of B
+            for (int k = 0; k < 3; k++) {
+                product[i][j] += A[i][k] * B[k][j];
+            }
+            
+        }
+    }
+
+    // 4. Print the Multiplication Result
+    printf("\nMultiplication Result (A * B):\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", product[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
