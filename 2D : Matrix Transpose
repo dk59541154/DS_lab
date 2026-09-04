@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    int rows = 3, cols = 3;
+    int A;
+    int transpose;
+
+    // 1. Take input for Matrix A
+    printf("Enter 9 numbers for Matrix A:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    // 2. Transpose Logic (Swap row and column indices)
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            transpose[j][i] = A[i][j]; // Notice [j][i] instead of [i][j]
+        }
+    }
+
+    // 3. Print the Original Matrix
+    printf("\nOriginal Matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", A[i][j]);
+        }
+        printf("\n");
+    }
+
+    // 4. Print the Transposed Matrix
+    printf("\nTransposed Matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", transpose[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
