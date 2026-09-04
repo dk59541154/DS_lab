@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    int arr[100]; // Creates an array that can hold up to 100 numbers
+    int size;
+    int temp;
+
+    // 1. Get the size of the array
+    printf("How many numbers do you want to sort? ");
+    scanf("%d", &size);
+
+    // 2. Take input values from the user
+    printf("Enter %d numbers:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // 3. Bubble Sort Logic
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - 1 - i; j++) {
+            // Swap if the left number is bigger than the right number
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+
+    // 4. Print the sorted results
+    printf("\nSorted Array in Ascending Order:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
