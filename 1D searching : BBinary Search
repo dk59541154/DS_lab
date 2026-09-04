@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50, 60, 70, 80, 90}; // MUST be sorted!
+    int size = 9;
+    int target = 70; // The number we want to find
+
+    int low = 0;          // First index
+    int high = size - 1;  // Last index
+
+    while (low <= high) {
+        int mid = (low + high) / 2; // Find the middle index
+
+        if (arr[mid] == target) {
+            printf("Found at index %d\n", mid);
+            return 0; // Stop the program immediately
+        }
+        else if (arr[mid] < target) {
+            low = mid + 1;  // Target is bigger, throw away left half
+        }
+        else {
+            high = mid - 1; // Target is smaller, throw away right half
+        }
+    }
+
+    printf("Not found\n");
+    return 0;
+}
