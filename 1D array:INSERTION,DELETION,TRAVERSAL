@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main() {
+    
+    int arr[10] = {10, 20, 30, 40, 50}; 
+    int size = 5; // We are currently using 5 slots
+
+    // 1. TRAVERSAL (Look at everything)
+    printf("Original: ");
+    for(int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // 2. INSERTION (Insert 25 at index 2)
+  
+    for(int i = size - 1; i >= 2; i--) {
+        arr[i + 1] = arr[i];
+    }
+    arr[2] = 25; 
+    size++;      
+
+    printf("After Insert: ");
+    for(int i = 0; i < size; i++) printf("%d ", arr[i]);
+    printf("\n");
+
+    // 3. DELETION (Remove the item at index 4, which is 40)
+  
+    for(int i = 4; i < size - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    size--;      // Array shrank by 1
+
+    printf("After Delete: ");
+    for(int i = 0; i < size; i++) printf("%d ", arr[i]);
+    printf("\n");
+
+    return 0;
+}
