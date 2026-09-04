@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+// A helper function to find the biggest number (tells us how many digits to check)
+int getMax(int arr[], int size) {
+    int max = arr[0];
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > max) max = arr[i];
+    }
+    return max;
+}
+
+// A helper function to sort the array based on a specific digit position (exp)
+void countingSortForRadix(int arr[], int size, int exp) {
+    int output[size]; // Output array to hold sorted values temporarily
+    int count[10] = {0}; // 10 buckets for digits 0 to 9
+
+    // 1. Store how many times each digit appears at the current 'exp' position
+    for (int i = 0; i < size; i++) {
+        int digit = (arr[i] / exp) % 10;
+        count[digit]++;
+    }
+
+    // 2. Change count[i] so it contains the actual position index in output[]
+    for (int i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+    }
+
+    // 3. Build the temporary output array by placing items in correct positions
+    for (int i = size - 1; i >= 0; i--) {
+        int digit = (arr[i] / exp) % 10;
+        output[count[digit] - 1] = arr[i];
+        count[digit]--;
+    }
+
+    // 4. Copy the sorted temporary values back into the original array
+    for (int i = 0; i < size; i++) {
+        arr[i] = output[i];
+    }
+}
+
+// The main Radix Sort function
+void radixSort(int arr[], int size) {
+    int max = getMax(arr, size);
+
+    // Run counting sort for every digit position. 
+    // 'exp' will be 1 (ones place), then 10 (tens place), then 100 (hundreds place)...
+    for (int exp = 1; max / exp > 0; exp *= 10) {
+        countingSortForRadix(arr, size, exp);
+    }
+}
+
+int main() {
+    int arr[] = {170, 45, 75, 90, 802, 24, 2, 66};
+    int size = 8;
+
+    radixSort(arr, size);
+
+    // Print sorted array
+    printf("Sorted Array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
